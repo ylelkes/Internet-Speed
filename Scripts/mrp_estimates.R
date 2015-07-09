@@ -42,6 +42,7 @@ cells.1 <- (fixef(individual.model)['(Intercept)']
 #weights the prediction by the freq of cell                                       
 cellpredweighted <- cells.1 * mrp_year$rel.freq
 mrpscore <-tapply(cellpredweighted, mrp_year$cbsa_year, sum)
+ss
 mrpdf <- na.omit(data.frame(cbsa=dimnames(mrpscore),mrpscore))
 mrpdf$cbsa <- mrpdf$c....2008....10140.2008....10180.2008....10300.2008....10420.2008...
 head(mrpdf$mrpscore[order(mrpdf$mrpscore)])
