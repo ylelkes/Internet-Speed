@@ -2,4 +2,4 @@
 =======
 
 ## Internet Speed by CBSA over Time
-![alt text](Graphs/speed_by_cbsa.png"Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/ylelkes/Internet-Speed/master/Graphs/speed_by_cbsa.png)
