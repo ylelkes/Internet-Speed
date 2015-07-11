@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 ## Testing the effects of Internet Speed on Political Knowledge
 =======
-# Internet-Speed
->>>>>>> 423b6f2db97caa42eda6aa36aef6d5173e5c4971
+
+## Internet Speed by CBSA over Time
+![alt text](Graphs/speed_by_cbsa.png"Logo Title Text 1")

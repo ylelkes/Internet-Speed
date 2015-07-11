@@ -82,3 +82,29 @@ formrp$educ_age <- interaction(formrp$educ,formrp$age_group)
 
 
 save(formrp,file="Data/Post-Stratification/formrp_cbsa.RData")
+
+
+####
+load("Data/Post-Stratification/pumacbsa.RData")
+## Limit Sample to >18 (like CCES)
+puma <- subset(puma,AGEP>=18)
+
+puma$age_group <-   car::recode(as.numeric(puma$AGEP),"18:34='18-34';35:54='35-54';55:120='55+';else=NA")
+puma$female <- car::recode(puma$SEX,"1='Male';2='Female'")
+puma$race4 <- car::recode(puma$RAC1P,"1='White';2='Black';else='Else'")
+puma$race4[puma$HISP!=1]='Hispanic'
+puma$educ <-   car::recode(as.numeric(puma$SCHL),"1:17='HS';18:20='Some College';21:24='College+'")
+puma$race.female <- interaction(puma$female,puma$race4)
+puma$educ_age <- interaction(puma$educ,puma$age_group)
+puma$ST <- stringr::str_pad(puma$ST,side="left",width = 2,pad = "0")
+
+
+puma %>% 
+  group_by (cbsa) %.%
+  mutate (total = .N) %.%
+  group_by(cbsa,educ,total) %>%
+  summarise (n = n()) %>%
+  mutate (rel.freq = n / total) -> educ_cbsa
+
+save(educ_cbsa,file="Data/Post-Stratification/educ_cbsa.RData")
+
